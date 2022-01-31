@@ -6,6 +6,7 @@ import com.bismillah.mymovies.data.source.MovieAppRepository
 import com.bismillah.mymovies.di.Injection
 import com.bismillah.mymovies.ui.detail.DetailViewModel
 import com.bismillah.mymovies.ui.movies.MoviesViewModel
+import com.bismillah.mymovies.ui.tvshows.TvShowsViewModel
 
 class ViewModelFactory private constructor(private val mMovieAppRepository: MovieAppRepository) :
     ViewModelProvider.NewInstanceFactory() {
@@ -26,9 +27,9 @@ class ViewModelFactory private constructor(private val mMovieAppRepository: Movi
             modelClass.isAssignableFrom(MoviesViewModel::class.java) -> {
                 MoviesViewModel(mMovieAppRepository) as T
             }
-//            modelClass.isAssignableFrom(TvShowsViewModel::class.java) -> {
-//                TvShowsViewModel(mMovieAppRepository) as T
-//            }
+            modelClass.isAssignableFrom(TvShowsViewModel::class.java) -> {
+                TvShowsViewModel(mMovieAppRepository) as T
+            }
             modelClass.isAssignableFrom(DetailViewModel::class.java) -> {
                 DetailViewModel(mMovieAppRepository) as T
             }

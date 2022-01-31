@@ -44,9 +44,9 @@ object DataDummy {
         val tvShows = ArrayList<MovieEntity>()
         tvShows.add(
             MovieEntity(
-                "2018-05-02",
                 "This Karate Kid sequel series picks up 30 years after the events of the 1984 All Valley Karate Tournament and finds Johnny Lawrence on the hunt for redemption by reopening the infamous Cobra Kai karate dojo. This reignites his old rivalry with the successful Daniel LaRusso, who has been working to maintain the balance in his life without mentor Mr. Miyagi.",
                 "en",
+                "2018-05-02",
                 3190.743,
                 8.1,
                 77169,
@@ -56,9 +56,9 @@ object DataDummy {
         )
         tvShows.add(
             MovieEntity(
-                "2021-12-29",
                 "Legendary bounty hunter Boba Fett and mercenary Fennec Shand must navigate the galaxy’s underworld when they return to the sands of Tatooine to stake their claim on the territory once ruled by Jabba the Hutt and his crime syndicate.",
                 "en",
+                "2021-12-29",
                 2717.243,
                 8.3,
                 115036,
@@ -68,9 +68,9 @@ object DataDummy {
         )
         tvShows.add(
             MovieEntity(
-                "2019-06-16",
                 "A group of high school students navigate love and friendships in a world of drugs, sex, trauma, and social media.",
                 "en",
+                "2019-06-16",
                 2351.685,
                 8.4,
                 85552,
@@ -126,9 +126,9 @@ object DataDummy {
         val tvShows = ArrayList<TvShow>()
         tvShows.add(
             TvShow(
-                "2018-05-02",
                 "This Karate Kid sequel series picks up 30 years after the events of the 1984 All Valley Karate Tournament and finds Johnny Lawrence on the hunt for redemption by reopening the infamous Cobra Kai karate dojo. This reignites his old rivalry with the successful Daniel LaRusso, who has been working to maintain the balance in his life without mentor Mr. Miyagi.",
                 "en",
+                "2018-05-02",
                 3190.743,
                 8.1,
                 "Cobra Kai",
@@ -138,9 +138,9 @@ object DataDummy {
         )
         tvShows.add(
             TvShow(
-                "2021-12-29",
                 "Legendary bounty hunter Boba Fett and mercenary Fennec Shand must navigate the galaxy’s underworld when they return to the sands of Tatooine to stake their claim on the territory once ruled by Jabba the Hutt and his crime syndicate.",
                 "en",
+                "2021-12-29",
                 2717.243,
                 8.3,
                 "The Book of Boba Fett",
@@ -150,9 +150,9 @@ object DataDummy {
         )
         tvShows.add(
             TvShow(
-                "2019-06-16",
                 "A group of high school students navigate love and friendships in a world of drugs, sex, trauma, and social media.",
                 "en",
+                "2019-06-16",
                 2351.685,
                 8.4,
                 "Euphoria",

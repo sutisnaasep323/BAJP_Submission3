@@ -10,14 +10,14 @@ data class TvShowsResponse(
 
 data class TvShow(
 
-    @field:SerializedName("first_air_date")
-    val firstAirDate: String,
-
     @field:SerializedName("overview")
     val overview: String,
 
     @field:SerializedName("original_language")
     val originalLanguage: String,
+
+    @field:SerializedName("first_air_date")
+    val firstAirDate: String,
 
     @field:SerializedName("popularity")
     val popularity: Double,

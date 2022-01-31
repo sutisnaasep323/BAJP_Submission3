@@ -80,11 +80,11 @@ class DetailActivity : AppCompatActivity() {
     private fun populateTvShowsDetail(tvShow: MovieEntity) {
         with(binding) {
             titleDetail.text = tvShow.title
-            releaseDetail.text = tvShow.releaseDate
-            sinopisDetail.text = tvShow.overview
+            releaseDetail.text = tvShow.overview
+            sinopisDetail.text = tvShow.originalLanguage
             popularityDetail.text = tvShow.popularity.toString()
             voteDetail.text = tvShow.voteAverage.toString()
-            languageDetail.text = tvShow.originalLanguage
+            languageDetail.text = tvShow.releaseDate
 
             Glide.with(this@DetailActivity)
                 .load("https://image.tmdb.org/t/p/original/" + tvShow.posterPath)
