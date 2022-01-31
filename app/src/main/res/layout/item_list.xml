@@ -45,6 +45,7 @@
             android:fontFamily="@font/poppins_bold"
             android:paddingStart="8dp"
             android:paddingEnd="8dp"
+            android:layout_marginTop="8dp"
             android:text="@string/dummyTitle"
             android:textColor="@color/black"
             android:textSize="16sp"
@@ -78,7 +79,7 @@
             android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/tv_language"
-            app:layout_constraintTop_toBottomOf="@+id/title" />
+            app:layout_constraintTop_toTopOf="@+id/tv_language" />
 
         <TextView
             android:id="@+id/tv_vote"
@@ -132,7 +133,7 @@
             android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/tv_popularity"
-            app:layout_constraintTop_toBottomOf="@+id/vote" />
+            app:layout_constraintTop_toTopOf="@+id/tv_popularity" />
 
         <TextView
             android:id="@+id/tv_release"
@@ -189,7 +190,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins"
-            android:maxLines="4"
+            android:maxLines="3"
             android:paddingStart="8dp"
             android:paddingTop="8dp"
             android:paddingEnd="8dp"

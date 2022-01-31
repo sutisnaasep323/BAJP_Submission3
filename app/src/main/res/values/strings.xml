@@ -17,4 +17,5 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="message_undo">Batalkan menghapus item sebelumnya?</string>
     <string name="message_ok">OK</string>
+    <string name="title_activity_detail">Detail Movie</string>
 </resources>
