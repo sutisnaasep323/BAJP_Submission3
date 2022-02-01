@@ -1,7 +1,6 @@
 package com.bismillah.mymovies.data.source
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
 import com.bismillah.mymovies.data.source.local.LocalDataSource
@@ -13,26 +12,12 @@ import com.bismillah.mymovies.data.source.remote.response.TvShow
 import com.bismillah.mymovies.utils.AppExecutors
 import com.bismillah.mymovies.vo.Resource
 
-class MovieAppRepository private constructor(
+class FakeMovieRepository(
     private val remoteDataSource: RemoteDataSource,
     private val localDataSource: LocalDataSource,
     private val appExecutors: AppExecutors
 ) :
     MovieAppDataSource {
-
-    companion object {
-        @Volatile
-        private var instance: MovieAppRepository? = null
-
-        fun getInstance(
-            remoteData: RemoteDataSource,
-            localData: LocalDataSource,
-            appExecutors: AppExecutors
-        ): MovieAppRepository =
-            instance ?: synchronized(this) {
-                instance ?: MovieAppRepository(remoteData, localData, appExecutors)
-            }
-    }
 
     override fun getAllMovies(sort: String): LiveData<Resource<PagedList<MovieEntity>>> {
         return object : NetworkBoundResource<PagedList<MovieEntity>, List<Movie>>(appExecutors) {
@@ -212,4 +197,3 @@ class MovieAppRepository private constructor(
         return appExecutors.diskIO().execute { localDataSource.setMovieFavorite(movie, state) }
     }
 }
-

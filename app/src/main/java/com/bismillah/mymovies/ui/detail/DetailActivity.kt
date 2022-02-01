@@ -66,9 +66,9 @@ class DetailActivity : AppCompatActivity() {
                 DetailType.MOVIES -> {
                     viewModel.setFavoriteMovie()
                 }
-//                DetailType.TV_SHOW -> {
-//                    viewModel.setFavoriteTvShow()
-//                }
+                DetailType.TV_SHOWS -> {
+                    viewModel.setFavoriteTvShow()
+                }
             }
         }
 
