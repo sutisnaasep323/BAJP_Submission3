@@ -2,13 +2,16 @@ package com.bismillah.mymovies.ui.detail
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.bismillah.mymovies.R
-import com.bismillah.mymovies.data.source.local.MovieEntity
+import com.bismillah.mymovies.data.source.local.entity.MovieEntity
 import com.bismillah.mymovies.databinding.ActivityDetailBinding
 import com.bismillah.mymovies.viewmodel.ViewModelFactory
+import com.bismillah.mymovies.vo.Resource
+import com.bismillah.mymovies.vo.Status
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 
@@ -30,37 +33,49 @@ class DetailActivity : AppCompatActivity() {
         val enumType: DetailType = DetailType.values()[type]
         val id = intent.getIntExtra(EXTRA_ID, -1)
 
-        val factory = ViewModelFactory.getInstance()
+        val factory = ViewModelFactory.getInstance(this)
         viewModel = ViewModelProvider(this, factory)[DetailViewModel::class.java]
 
         binding.progressBar.visibility = View.VISIBLE
         binding.nestedScrollView.visibility = View.GONE
         binding.collapsingToolbar.visibility = View.GONE
 
+        binding.backButton.setOnClickListener { onBackPressed() }
+
         when (enumType) {
             DetailType.MOVIES -> {
-                viewModel.selectedMovieId(id.toString())
-                viewModel.getMovieDetail().observe(this, { movie ->
-                    binding.progressBar.visibility = View.GONE
-                    binding.nestedScrollView.visibility = View.VISIBLE
-                    binding.collapsingToolbar.visibility = View.VISIBLE
-                    populateMovieDetail(movie)
+                viewModel.selectedMovieId(id)
+                viewModel.movieDetail.observe(this, { movie ->
+                    if (movie != null) {
+                        showDetail(movie)
+                    }
                 })
             }
             DetailType.TV_SHOWS -> {
-                viewModel.selectedTvShowId(id.toString())
-                viewModel.getTvShowDetail().observe(this, { tvShow ->
-                    binding.progressBar.visibility = View.GONE
-                    binding.nestedScrollView.visibility = View.VISIBLE
-                    binding.collapsingToolbar.visibility = View.VISIBLE
-                    populateTvShowsDetail(tvShow)
+                viewModel.selectedTvShowId(id)
+                viewModel.tvShowDetail.observe(this, { tvShow ->
+                    if (tvShow != null) {
+                        showDetail(tvShow)
+                    }
                 })
             }
         }
 
+//        binding.favoriteButton.setOnClickListener {
+//            when (enumType) {
+//                DetailType.MOVIE -> {
+//                    viewModel.setFavoriteMovie()
+//                }
+//                DetailType.TV_SHOW -> {
+//                    viewModel.setFavoriteTvShow()
+//                }
+//            }
+//        }
+
+
     }
 
-    private fun populateMovieDetail(movie: MovieEntity) {
+    private fun populateDetail(movie: MovieEntity) {
         with(binding) {
             titleDetail.text = movie.title
             releaseDetail.text = movie.releaseDate
@@ -77,20 +92,45 @@ class DetailActivity : AppCompatActivity() {
         }
     }
 
-    private fun populateTvShowsDetail(tvShow: MovieEntity) {
-        with(binding) {
-            titleDetail.text = tvShow.title
-            releaseDetail.text = tvShow.overview
-            sinopisDetail.text = tvShow.originalLanguage
-            popularityDetail.text = tvShow.popularity.toString()
-            voteDetail.text = tvShow.voteAverage.toString()
-            languageDetail.text = tvShow.releaseDate
+    private fun showDetail(movie: Resource<MovieEntity>) {
+        when (movie.status) {
+            Status.LOADING -> binding.progressBar.visibility = View.VISIBLE
+            Status.SUCCESS -> if (movie.data != null) {
+                binding.progressBar.visibility = View.GONE
+                binding.nestedScrollView.visibility = View.VISIBLE
+                binding.collapsingToolbar.visibility = View.VISIBLE
 
-            Glide.with(this@DetailActivity)
-                .load("https://image.tmdb.org/t/p/original/" + tvShow.posterPath)
-                .apply(RequestOptions.placeholderOf(R.drawable.ic_loading)
-                    .error(R.drawable.ic_error))
-                .into(binding.posterDetail)
+                val state = movie.data.favorite
+
+                setFavoriteState(state)
+                populateDetail(movie.data)
+            }
+            Status.ERROR -> {
+                binding.progressBar.visibility = View.GONE
+                Toast.makeText(
+                    this,
+                    "Terjadi kesalahan",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
+    }
+
+    private fun setFavoriteState(state: Boolean) {
+        if (state) {
+            binding.favoriteButton.setImageDrawable(
+                ContextCompat.getDrawable(
+                    this,
+                    R.drawable.ic_favorite
+                )
+            )
+        } else {
+            binding.favoriteButton.setImageDrawable(
+                ContextCompat.getDrawable(
+                    this,
+                    R.drawable.ic_favorite_border
+                )
+            )
         }
     }
 

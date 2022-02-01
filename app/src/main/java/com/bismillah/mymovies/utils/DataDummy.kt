@@ -1,6 +1,6 @@
 package com.bismillah.mymovies.utils
 
-import com.bismillah.mymovies.data.source.local.MovieEntity
+import com.bismillah.mymovies.data.source.local.entity.MovieEntity
 import com.bismillah.mymovies.data.source.remote.response.Movie
 import com.bismillah.mymovies.data.source.remote.response.TvShow
 

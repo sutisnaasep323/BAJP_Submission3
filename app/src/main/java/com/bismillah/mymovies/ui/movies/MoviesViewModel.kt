@@ -2,11 +2,14 @@ package com.bismillah.mymovies.ui.movies
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import androidx.paging.PagedList
 import com.bismillah.mymovies.data.source.MovieAppRepository
-import com.bismillah.mymovies.data.source.local.MovieEntity
+import com.bismillah.mymovies.data.source.local.entity.MovieEntity
+import com.bismillah.mymovies.vo.Resource
 
 class MoviesViewModel(private val movieAppRepository: MovieAppRepository) : ViewModel() {
 
-    fun getMovies(): LiveData<List<MovieEntity>> = movieAppRepository.getAllMovies()
+    fun getMovies(sort: String): LiveData<Resource<PagedList<MovieEntity>>> =
+        movieAppRepository.getAllMovies(sort)
 
 }

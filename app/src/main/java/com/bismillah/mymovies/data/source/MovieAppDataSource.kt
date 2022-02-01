@@ -1,16 +1,24 @@
 package com.bismillah.mymovies.data.source
 
 import androidx.lifecycle.LiveData
-import com.bismillah.mymovies.data.source.local.MovieEntity
+import androidx.paging.PagedList
+import com.bismillah.mymovies.data.source.local.entity.MovieEntity
+import com.bismillah.mymovies.vo.Resource
 
 interface MovieAppDataSource {
 
-    fun getAllTvShows(): LiveData<List<MovieEntity>>
+    fun getAllTvShows(sort: String): LiveData<Resource<PagedList<MovieEntity>>>
 
-    fun getTvShowById(tvShowId: String): LiveData<MovieEntity>
+    fun getTvShowById(tvShowId: Int): LiveData<Resource<MovieEntity>>
 
-    fun getAllMovies(): LiveData<List<MovieEntity>>
+    fun getAllMovies(sort: String): LiveData<Resource<PagedList<MovieEntity>>>
 
-    fun getMovieById(movieId: String): LiveData<MovieEntity>
+    fun getMovieById(movieId: Int): LiveData<Resource<MovieEntity>>
+
+    fun getFavoriteMovies(sort: String): LiveData<PagedList<MovieEntity>>
+
+    fun getFavoriteTvShows(sort: String): LiveData<PagedList<MovieEntity>>
+
+    fun setCourseFavorite(movie: MovieEntity, state: Boolean)
 
 }

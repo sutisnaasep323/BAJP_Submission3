@@ -1,5 +1,6 @@
 package com.bismillah.mymovies.viewmodel
 
+import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.bismillah.mymovies.data.source.MovieAppRepository
@@ -15,9 +16,9 @@ class ViewModelFactory private constructor(private val mMovieAppRepository: Movi
         @Volatile
         private var instance: ViewModelFactory? = null
 
-        fun getInstance(): ViewModelFactory =
+        fun getInstance(context: Context): ViewModelFactory =
             instance ?: synchronized(this) {
-                instance ?: ViewModelFactory(Injection.provideRepository())
+                instance ?: ViewModelFactory(Injection.provideRepository(context))
             }
     }
 
@@ -33,7 +34,11 @@ class ViewModelFactory private constructor(private val mMovieAppRepository: Movi
             modelClass.isAssignableFrom(DetailViewModel::class.java) -> {
                 DetailViewModel(mMovieAppRepository) as T
             }
+//            modelClass.isAssignableFrom(FavoriteViewModel::class.java) -> {
+//                FavoriteViewModel(mMovieAppRepository) as T
+//            }
             else -> throw Throwable("Unknown ViewModel class: ${modelClass.name}")
         }
     }
+
 }
