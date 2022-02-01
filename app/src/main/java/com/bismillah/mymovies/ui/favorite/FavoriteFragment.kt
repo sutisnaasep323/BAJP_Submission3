@@ -1,5 +1,6 @@
 package com.bismillah.mymovies.ui.favorite
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -20,4 +21,18 @@ class FavoriteFragment : Fragment() {
         fragmentFavoriteBinding = FragmentFavoriteBinding.inflate(inflater, container, false)
         return binding.root
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val sectionPagerAdapter = SectionPagerAdapter(context as Context, childFragmentManager)
+        binding.viewpagerFavorite.adapter = sectionPagerAdapter
+        binding.tabsFavorite.setupWithViewPager(binding.viewpagerFavorite)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        fragmentFavoriteBinding = null
+    }
+
 }

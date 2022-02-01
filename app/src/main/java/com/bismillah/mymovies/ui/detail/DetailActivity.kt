@@ -61,17 +61,16 @@ class DetailActivity : AppCompatActivity() {
             }
         }
 
-//        binding.favoriteButton.setOnClickListener {
-//            when (enumType) {
-//                DetailType.MOVIE -> {
-//                    viewModel.setFavoriteMovie()
-//                }
+        binding.favoriteButton.setOnClickListener {
+            when (enumType) {
+                DetailType.MOVIES -> {
+                    viewModel.setFavoriteMovie()
+                }
 //                DetailType.TV_SHOW -> {
 //                    viewModel.setFavoriteTvShow()
 //                }
-//            }
-//        }
-
+            }
+        }
 
     }
 
