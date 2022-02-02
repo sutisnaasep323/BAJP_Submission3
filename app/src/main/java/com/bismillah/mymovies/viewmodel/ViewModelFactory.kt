@@ -5,10 +5,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.bismillah.mymovies.data.source.MovieAppRepository
 import com.bismillah.mymovies.di.Injection
-import com.bismillah.mymovies.ui.detail.DetailViewModel
-import com.bismillah.mymovies.ui.favorite.FavoriteViewModel
-import com.bismillah.mymovies.ui.movies.MoviesViewModel
-import com.bismillah.mymovies.ui.tvshows.TvShowsViewModel
+import com.bismillah.mymovies.ui.viewmodel.DetailViewModel
+import com.bismillah.mymovies.ui.viewmodel.FavoriteViewModel
+import com.bismillah.mymovies.ui.viewmodel.MoviesViewModel
+import com.bismillah.mymovies.ui.viewmodel.TvShowsViewModel
 
 class ViewModelFactory private constructor(private val mMovieAppRepository: MovieAppRepository) :
     ViewModelProvider.NewInstanceFactory() {

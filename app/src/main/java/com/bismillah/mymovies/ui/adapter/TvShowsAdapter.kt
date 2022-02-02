@@ -1,4 +1,4 @@
-package com.bismillah.mymovies.ui.tvshows
+package com.bismillah.mymovies.ui.adapter
 
 import android.content.Intent
 import android.graphics.drawable.Drawable
@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bismillah.mymovies.data.source.local.entity.MovieEntity
 import com.bismillah.mymovies.databinding.ItemListBinding
-import com.bismillah.mymovies.ui.detail.DetailActivity
+import com.bismillah.mymovies.ui.activity.DetailActivity
 import com.bismillah.mymovies.ui.detail.DetailType
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
@@ -39,7 +39,7 @@ class TvShowsAdapter :
         return TvShowsViewHolder(itemListBinding)
     }
 
-    override fun onBindViewHolder(holder: TvShowsAdapter.TvShowsViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: TvShowsViewHolder, position: Int) {
         val tvShowEntity = getItem(position)
         if (tvShowEntity != null) {
             holder.bind(tvShowEntity)

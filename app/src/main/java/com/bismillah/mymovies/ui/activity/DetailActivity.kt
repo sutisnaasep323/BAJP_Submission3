@@ -1,4 +1,4 @@
-package com.bismillah.mymovies.ui.detail
+package com.bismillah.mymovies.ui.activity
 
 import android.os.Bundle
 import android.view.View
@@ -9,6 +9,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.bismillah.mymovies.R
 import com.bismillah.mymovies.data.source.local.entity.MovieEntity
 import com.bismillah.mymovies.databinding.ActivityDetailBinding
+import com.bismillah.mymovies.ui.detail.DetailType
+import com.bismillah.mymovies.ui.viewmodel.DetailViewModel
 import com.bismillah.mymovies.viewmodel.ViewModelFactory
 import com.bismillah.mymovies.vo.Resource
 import com.bismillah.mymovies.vo.Status

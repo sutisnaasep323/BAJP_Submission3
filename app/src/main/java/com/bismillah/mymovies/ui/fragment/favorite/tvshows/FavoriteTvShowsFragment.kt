@@ -1,10 +1,10 @@
-package com.bismillah.mymovies.ui.favorite.movies
+package com.bismillah.mymovies.ui.fragment.favorite.tvshows
 
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.paging.PagedList
@@ -13,47 +13,48 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bismillah.mymovies.R
 import com.bismillah.mymovies.data.source.local.entity.MovieEntity
-import com.bismillah.mymovies.databinding.FragmentFavoriteMoviesBinding
-import com.bismillah.mymovies.ui.favorite.FavoriteViewModel
+import com.bismillah.mymovies.databinding.FragmentFavoriteTvShowsBinding
+import com.bismillah.mymovies.ui.adapter.FavoriteTvShowsAdapter
+import com.bismillah.mymovies.ui.viewmodel.FavoriteViewModel
 import com.bismillah.mymovies.utils.SortUtils
 import com.bismillah.mymovies.viewmodel.ViewModelFactory
 import com.google.android.material.snackbar.Snackbar
 
-class FavoriteMoviesFragment : Fragment() {
+class FavoriteTvShowsFragment : Fragment() {
 
-    private var _fragmentFavoriteMoviesBinding: FragmentFavoriteMoviesBinding? = null
-    private val binding get() = _fragmentFavoriteMoviesBinding!!
+    private var _fragmentFavoriteTvShowsBinding: FragmentFavoriteTvShowsBinding? = null
+    private val binding get() = _fragmentFavoriteTvShowsBinding!!
 
-    private lateinit var moviesAdapter: FavoriteMoviesAdapter
+    private lateinit var tvShowsAdapter: FavoriteTvShowsAdapter
     private lateinit var viewModel: FavoriteViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _fragmentFavoriteMoviesBinding =
-            FragmentFavoriteMoviesBinding.inflate(inflater, container, false)
+        _fragmentFavoriteTvShowsBinding =
+            FragmentFavoriteTvShowsBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        itemTouchHelper.attachToRecyclerView(binding.rvMoviesFavorite)
+        itemTouchHelper.attachToRecyclerView(binding.rvTvShowsFavorite)
 
         val factory = ViewModelFactory.getInstance(requireActivity())
         viewModel = ViewModelProvider(this, factory)[FavoriteViewModel::class.java]
 
-        moviesAdapter = FavoriteMoviesAdapter()
+        tvShowsAdapter = FavoriteTvShowsAdapter()
 
         binding.progressBar.visibility = View.VISIBLE
         binding.notFound.visibility = View.GONE
         setList(SortUtils.RANDOM)
 
-        with(binding.rvMoviesFavorite) {
+        with(binding.rvTvShowsFavorite) {
             layoutManager = LinearLayoutManager(context)
             setHasFixedSize(true)
-            this.adapter = moviesAdapter
+            adapter = tvShowsAdapter
         }
 
         binding.random.setOnClickListener { setList(SortUtils.RANDOM) }
@@ -81,12 +82,12 @@ class FavoriteMoviesFragment : Fragment() {
         override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
             if (view != null) {
                 val swipedPosition = viewHolder.adapterPosition
-                val movieEntity = moviesAdapter.getSwipedData(swipedPosition)
-                movieEntity?.let { viewModel.setFavorite(it) }
+                val tvShowEntity = tvShowsAdapter.getSwipedData(swipedPosition)
+                tvShowEntity?.let { viewModel.setFavorite(it) }
                 val snackbar =
                     Snackbar.make(view as View, R.string.message_undo, Snackbar.LENGTH_LONG)
                 snackbar.setAction(R.string.message_ok) { _ ->
-                    movieEntity?.let { viewModel.setFavorite(it) }
+                    tvShowEntity?.let { viewModel.setFavorite(it) }
                 }
                 snackbar.show()
             }
@@ -94,15 +95,15 @@ class FavoriteMoviesFragment : Fragment() {
     })
 
     private fun setList(sort: String) {
-        viewModel.getFavoriteMovies(sort).observe(viewLifecycleOwner, moviesObserver)
+        viewModel.getFavoriteTvShows(sort).observe(viewLifecycleOwner, tvShowsObserver)
     }
 
-    private val moviesObserver = Observer<PagedList<MovieEntity>> { movies ->
-        if (movies.isNotEmpty()) {
+    private val tvShowsObserver = Observer<PagedList<MovieEntity>> { tvShows ->
+        if (tvShows.isNotEmpty()) {
             binding.progressBar.visibility = View.GONE
             binding.notFound.visibility = View.GONE
-            moviesAdapter.submitList(movies)
-            moviesAdapter.notifyDataSetChanged()
+            tvShowsAdapter.submitList(tvShows)
+            tvShowsAdapter.notifyDataSetChanged()
         } else {
             binding.progressBar.visibility = View.GONE
             binding.notFound.visibility = View.VISIBLE
@@ -111,6 +112,6 @@ class FavoriteMoviesFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        _fragmentFavoriteMoviesBinding = null
+        _fragmentFavoriteTvShowsBinding = null
     }
 }

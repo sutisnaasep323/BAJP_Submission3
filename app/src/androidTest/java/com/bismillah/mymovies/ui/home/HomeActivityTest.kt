@@ -15,6 +15,7 @@ import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import com.bismillah.mymovies.R
+import com.bismillah.mymovies.ui.activity.HomeActivity
 import com.bismillah.mymovies.utils.DataDummy
 import com.bismillah.mymovies.utils.EspressoIdlingResource
 import com.google.android.material.tabs.TabLayout

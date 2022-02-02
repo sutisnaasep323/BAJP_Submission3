@@ -1,4 +1,4 @@
-package com.bismillah.mymovies.ui.movies
+package com.bismillah.mymovies.ui.adapter
 
 import android.content.Intent
 import android.graphics.drawable.Drawable
@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bismillah.mymovies.data.source.local.entity.MovieEntity
 import com.bismillah.mymovies.databinding.ItemListBinding
-import com.bismillah.mymovies.ui.detail.DetailActivity
+import com.bismillah.mymovies.ui.activity.DetailActivity
 import com.bismillah.mymovies.ui.detail.DetailType
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
@@ -90,7 +90,7 @@ class MoviesAdapter : PagedListAdapter<MovieEntity, MoviesAdapter.MovieViewHolde
 
     }
 
-    override fun onBindViewHolder(holder: MoviesAdapter.MovieViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
         val movieEntity = getItem(position)
         if (movieEntity != null) {
             holder.bind(movieEntity)

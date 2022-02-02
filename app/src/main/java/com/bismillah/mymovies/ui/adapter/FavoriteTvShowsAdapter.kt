@@ -1,16 +1,16 @@
-package com.bismillah.mymovies.ui.favorite.movies
+package com.bismillah.mymovies.ui.adapter
 
 import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
-import android.view.View.GONE
+import android.view.View
 import android.view.ViewGroup
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bismillah.mymovies.data.source.local.entity.MovieEntity
 import com.bismillah.mymovies.databinding.ItemListBinding
-import com.bismillah.mymovies.ui.detail.DetailActivity
+import com.bismillah.mymovies.ui.activity.DetailActivity
 import com.bismillah.mymovies.ui.detail.DetailType
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
@@ -18,8 +18,8 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 
-class FavoriteMoviesAdapter :
-    PagedListAdapter<MovieEntity, FavoriteMoviesAdapter.MovieViewHolder>(DIFF_CALLBACK) {
+class FavoriteTvShowsAdapter :
+    PagedListAdapter<MovieEntity, FavoriteTvShowsAdapter.TvShowsViewHolder>(DIFF_CALLBACK) {
 
     companion object {
         private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<MovieEntity>() {
@@ -33,34 +33,34 @@ class FavoriteMoviesAdapter :
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TvShowsViewHolder {
         val itemListBinding =
             ItemListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return MovieViewHolder(itemListBinding)
+        return TvShowsViewHolder(itemListBinding)
     }
 
-    override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
-        val movieEntity = getItem(position)
-        if (movieEntity != null) {
-            holder.bind(movieEntity)
+    override fun onBindViewHolder(holder: TvShowsViewHolder, position: Int) {
+        val tvShowEntity = getItem(position)
+        if (tvShowEntity != null) {
+            holder.bind(tvShowEntity)
         }
     }
 
     fun getSwipedData(swipedPosition: Int): MovieEntity? = getItem(swipedPosition)
 
-    inner class MovieViewHolder(private val binding: ItemListBinding) :
+    inner class TvShowsViewHolder(private val binding: ItemListBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(movieEntity: MovieEntity) {
+        fun bind(tvShows: MovieEntity) {
             with(binding) {
-                title.text = movieEntity.title
-                release.text = movieEntity.releaseDate
-                language.text = movieEntity.originalLanguage
-                popularity.text = movieEntity.popularity.toString()
-                vote.text = movieEntity.voteAverage.toString()
-                overview.text = movieEntity.overview
+                title.text = tvShows.title
+                release.text = tvShows.releaseDate
+                language.text = tvShows.originalLanguage
+                popularity.text = tvShows.popularity.toString()
+                vote.text = tvShows.voteAverage.toString()
+                overview.text = tvShows.overview
 
                 Glide.with(itemView.context)
-                    .load("https://image.tmdb.org/t/p/original/" + movieEntity.posterPath)
+                    .load("https://image.tmdb.org/t/p/original/" + tvShows.posterPath)
                     .listener(object : RequestListener<Drawable> {
                         override fun onLoadFailed(
                             e: GlideException?,
@@ -68,7 +68,7 @@ class FavoriteMoviesAdapter :
                             target: Target<Drawable>?,
                             isFirstResource: Boolean
                         ): Boolean {
-                            progressBar.visibility = GONE
+                            progressBar.visibility = View.GONE
                             return false
                         }
 
@@ -79,7 +79,7 @@ class FavoriteMoviesAdapter :
                             dataSource: DataSource?,
                             isFirstResource: Boolean
                         ): Boolean {
-                            progressBar.visibility = GONE
+                            progressBar.visibility = View.GONE
                             return false
                         }
                     })
@@ -87,8 +87,8 @@ class FavoriteMoviesAdapter :
 
                 itemView.setOnClickListener {
                     val intent = Intent(itemView.context, DetailActivity::class.java).apply {
-                        putExtra(DetailActivity.EXTRA_TYPE, DetailType.MOVIES.ordinal)
-                        putExtra(DetailActivity.EXTRA_ID, movieEntity.id)
+                        putExtra(DetailActivity.EXTRA_TYPE, DetailType.TV_SHOWS.ordinal)
+                        putExtra(DetailActivity.EXTRA_ID, tvShows.id)
                     }
                     itemView.context.startActivity(intent)
                 }

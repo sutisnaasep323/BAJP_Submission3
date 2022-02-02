@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyMovies">
         <activity
-            android:name=".ui.splashscreen.ActivitySplashScreen"
+            android:name=".ui.activity.ActivitySplashScreen"
             android:exported="true"
             android:theme="@style/Theme.MyMovies.NoActionBar">
             <intent-filter>
@@ -22,12 +22,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.detail.DetailActivity"
+            android:name=".ui.activity.DetailActivity"
             android:exported="true"
             android:label="@string/title_activity_detail"
             android:theme="@style/Theme.MyMovies.NoActionBar" />
         <activity
-            android:name=".ui.home.HomeActivity"
+            android:name=".ui.activity.HomeActivity"
             android:exported="true">
         </activity>
 

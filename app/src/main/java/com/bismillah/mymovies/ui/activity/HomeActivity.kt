@@ -1,4 +1,4 @@
-package com.bismillah.mymovies.ui.home
+package com.bismillah.mymovies.ui.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -6,9 +6,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.bismillah.mymovies.R
 import com.bismillah.mymovies.databinding.ActivityHomeBinding
-import com.bismillah.mymovies.ui.favorite.FavoriteFragment
-import com.bismillah.mymovies.ui.movies.MoviesFragment
-import com.bismillah.mymovies.ui.tvshows.TvShowsFragment
+import com.bismillah.mymovies.ui.fragment.favorite.FavoriteFragment
+import com.bismillah.mymovies.ui.fragment.MoviesFragment
+import com.bismillah.mymovies.ui.fragment.TvShowsFragment
 
 class HomeActivity : AppCompatActivity() {
 

@@ -6,6 +6,7 @@ import androidx.lifecycle.Observer
 import androidx.paging.PagedList
 import com.bismillah.mymovies.data.source.MovieAppRepository
 import com.bismillah.mymovies.data.source.local.entity.MovieEntity
+import com.bismillah.mymovies.ui.viewmodel.TvShowsViewModel
 import com.bismillah.mymovies.utils.SortUtils
 import com.bismillah.mymovies.vo.Resource
 import com.nhaarman.mockitokotlin2.verify

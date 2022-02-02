@@ -1,4 +1,4 @@
-package com.bismillah.mymovies.ui.tvshows
+package com.bismillah.mymovies.ui.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -10,9 +10,10 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.paging.PagedList
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bismillah.mymovies.R
 import com.bismillah.mymovies.data.source.local.entity.MovieEntity
 import com.bismillah.mymovies.databinding.FragmentTvShowsBinding
+import com.bismillah.mymovies.ui.adapter.TvShowsAdapter
+import com.bismillah.mymovies.ui.viewmodel.TvShowsViewModel
 import com.bismillah.mymovies.utils.SortUtils
 import com.bismillah.mymovies.viewmodel.ViewModelFactory
 import com.bismillah.mymovies.vo.Resource

@@ -1,4 +1,4 @@
-package com.bismillah.mymovies.ui.splashscreen
+package com.bismillah.mymovies.ui.activity
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,7 +6,6 @@ import android.os.Handler
 import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import com.bismillah.mymovies.R
-import com.bismillah.mymovies.ui.home.HomeActivity
 
 class ActivitySplashScreen : AppCompatActivity() {
 

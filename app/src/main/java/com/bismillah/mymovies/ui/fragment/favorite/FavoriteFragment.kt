@@ -1,4 +1,4 @@
-package com.bismillah.mymovies.ui.favorite
+package com.bismillah.mymovies.ui.fragment.favorite
 
 import android.content.Context
 import android.os.Bundle
@@ -6,8 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.bismillah.mymovies.R
 import com.bismillah.mymovies.databinding.FragmentFavoriteBinding
+import com.bismillah.mymovies.ui.adapter.SectionPagerAdapter
 
 class FavoriteFragment : Fragment() {
 

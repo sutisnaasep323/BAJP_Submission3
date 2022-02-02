@@ -5,9 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import com.bismillah.mymovies.data.source.MovieAppRepository
 import com.bismillah.mymovies.data.source.local.entity.MovieEntity
+import com.bismillah.mymovies.ui.viewmodel.DetailViewModel
 import com.bismillah.mymovies.utils.DataDummy
 import com.bismillah.mymovies.vo.Resource
-import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test

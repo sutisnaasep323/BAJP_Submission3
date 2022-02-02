@@ -1,4 +1,4 @@
-package com.bismillah.mymovies.ui.tvshows
+package com.bismillah.mymovies.ui.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel

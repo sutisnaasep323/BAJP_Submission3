@@ -1,4 +1,4 @@
-package com.bismillah.mymovies.ui.favorite
+package com.bismillah.mymovies.ui.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
