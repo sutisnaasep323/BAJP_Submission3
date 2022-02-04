@@ -87,8 +87,10 @@ class DetailActivity : AppCompatActivity() {
 
             Glide.with(this@DetailActivity)
                 .load("https://image.tmdb.org/t/p/original/" + movie.posterPath)
-                .apply(RequestOptions.placeholderOf(R.drawable.ic_loading)
-                    .error(R.drawable.ic_error))
+                .apply(
+                    RequestOptions.placeholderOf(R.drawable.ic_loading)
+                        .error(R.drawable.ic_error)
+                )
                 .into(binding.posterDetail)
         }
     }
