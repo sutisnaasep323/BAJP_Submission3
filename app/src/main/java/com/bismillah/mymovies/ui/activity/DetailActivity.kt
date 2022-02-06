@@ -47,11 +47,11 @@ class DetailActivity : AppCompatActivity() {
         when (enumType) {
             DetailType.MOVIES -> {
                 viewModel.selectedMovieId(id)
-                viewModel.movieDetail.observe(this, { movie ->
+                viewModel.movieDetail.observe(this) { movie ->
                     if (movie != null) {
                         showDetail(movie)
                     }
-                })
+                }
             }
             DetailType.TV_SHOWS -> {
                 viewModel.selectedTvShowId(id)

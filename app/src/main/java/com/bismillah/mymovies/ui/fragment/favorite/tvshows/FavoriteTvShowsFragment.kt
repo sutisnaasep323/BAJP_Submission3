@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bismillah.mymovies.R
 import com.bismillah.mymovies.data.source.local.entity.MovieEntity
 import com.bismillah.mymovies.databinding.FragmentFavoriteTvShowsBinding
-import com.bismillah.mymovies.ui.adapter.FavoriteTvShowsAdapter
+import com.bismillah.mymovies.ui.adapter.FavoriteMoviesAdapter
 import com.bismillah.mymovies.ui.viewmodel.FavoriteViewModel
 import com.bismillah.mymovies.utils.SortUtils
 import com.bismillah.mymovies.viewmodel.ViewModelFactory
@@ -25,7 +25,7 @@ class FavoriteTvShowsFragment : Fragment() {
     private var _fragmentFavoriteTvShowsBinding: FragmentFavoriteTvShowsBinding? = null
     private val binding get() = _fragmentFavoriteTvShowsBinding!!
 
-    private lateinit var tvShowsAdapter: FavoriteTvShowsAdapter
+    private lateinit var tvShowsAdapter: FavoriteMoviesAdapter
     private lateinit var viewModel: FavoriteViewModel
 
     override fun onCreateView(
@@ -45,7 +45,7 @@ class FavoriteTvShowsFragment : Fragment() {
         val factory = ViewModelFactory.getInstance(requireActivity())
         viewModel = ViewModelProvider(this, factory)[FavoriteViewModel::class.java]
 
-        tvShowsAdapter = FavoriteTvShowsAdapter()
+        tvShowsAdapter = FavoriteMoviesAdapter()
 
         binding.progressBar.visibility = View.VISIBLE
         binding.notFound.visibility = View.GONE
